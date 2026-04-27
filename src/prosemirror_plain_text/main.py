@@ -1,32 +1,29 @@
-from .document import my_doc
+from prosemirror.model import DOMSerializer
 
-
-def leaf_text(node):
-    if "to_plain" in node.type.spec:
-        return node.type.spec["to_plain"](node, leaf_text=leaf_text)
-    return node.text_content
-
-
-def text_descendants(doc):
-    return leaf_text(doc)
+from prosemirror_plain_text.document import my_doc
+from prosemirror_plain_text.schema import to_plain, my_schema
 
 
 def main():
-    # Method 1: doc.text_content
-    method1_export = my_doc.text_content
+    with open("../../exports/text_content.txt", "w") as f:
+        f.write(my_doc.text_content)
 
-    # Method 2: doc.text_descendants (custom logic for traversing descendants)
-    method2_export = text_descendants(my_doc)
+    with open("../../exports/text_between.txt", "w") as f:
+        f.write(my_doc.text_between(0, my_doc.content.size, "\n\n"))
 
-    with open("exports/text_content.txt", "w") as f:
-        f.write(method1_export)
+    with open("../../exports/text_custom.txt", "w") as f:
+        f.write(to_plain(my_doc))
 
-    with open("exports/text_descendants.txt", "w") as f:
-        f.write(method2_export)
+    with open("../../exports/text.html", "w") as f:
+        html = DOMSerializer.from_schema(my_schema).serialize_fragment(my_doc.content)
+        f.write(str(html))
 
     print(
-        "Successfully exported documents to exports/text_content.txt and exports/text_descendants.txt"
+        "Successfully exported documents to exports/text_content.txt"
+        "and exports/text_between.txt and exports/text_custom.txt"
     )
+
+    pandoc_convert()
 
 
 if __name__ == "__main__":

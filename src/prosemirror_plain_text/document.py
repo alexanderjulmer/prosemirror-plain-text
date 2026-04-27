@@ -27,8 +27,27 @@ document_json = {
                     "type": "list_item",
                     "content": [
                         {
-                            "type": "paragraph",
-                            "content": [{"type": "text", "text": "Second item"}],
+                            "type": "bullet_list",
+                            "content": [
+                                {
+                                    "type": "list_item",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [{"type": "text", "text": "First item"}],
+                                        }
+                                    ],
+                                },
+                                {
+                                    "type": "list_item",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [{"type": "text", "text": "Second item"}],
+                                        }
+                                    ],
+                                },
+                            ],
                         }
                     ],
                 },

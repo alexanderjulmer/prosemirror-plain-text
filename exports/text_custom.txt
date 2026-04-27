@@ -1,0 +1,9 @@
+Document Title
+
+This is a paragraph introducing the content.
+
+1. First item
+2. First itemSecond item
+
+Click for details
+Here is the hidden information.
