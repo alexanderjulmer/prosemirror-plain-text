@@ -23,8 +23,5 @@ def main():
         "and exports/text_between.txt and exports/text_custom.txt"
     )
 
-    pandoc_convert()
-
-
 if __name__ == "__main__":
     main()
